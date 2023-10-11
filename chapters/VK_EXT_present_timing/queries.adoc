@@ -274,6 +274,11 @@ include::{generated}/api/structs/VkSwapchainTimingInfoEXT.adoc[]
     structure.
   * pname:timeDomain is a elink:VkTimeDomainEXT value representing the time
     domain that should be used with the swapchain.
+  * pname:presentAtNearestRefreshCycle specifies whether the presentation is
+    allowed to target the refresh cycle that is nearest to the target present
+    time, when one is provided. If ename:VK_FALSE, a targeted present stage
+    must: not complete before the target present time specified via
+    slink:VkPresentTimeEXT::pname:targetPresentTime.
 
 include::{generated}/validity/structs/VkSwapchainTimingInfoEXT.adoc[]
 --
@@ -334,8 +339,8 @@ fname:vkGetPastPresentationTimingEXT will keep providing all available
 results for a previously incomplete entry until it is complete.
 
 Upon return, zero or more slots of the pname:swapchain internal timing
-collection queue, equal to the number of completed entries written to
-pname:pPresentationTimings for which all present stages have been returned,
+collection queue, equal to the number of entries written to
+pname:pPresentationTimings for which pname:reportComplete is ename:VK_TRUE,
 are made available for future fname:vkQueuePresentKHR calls.
 
 include::{generated}/validity/protos/vkGetPastPresentationTimingEXT.adoc[]

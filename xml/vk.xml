@@ -3195,7 +3195,7 @@ typedef void* <name>MTLSharedEvent_id</name>;
         </type>
         <type category="struct" name="VkSwapchainTimingPropertiesEXT">
             <member values="VK_STRUCTURE_TYPE_SWAPCHAIN_TIMING_PROPERTIES_EXT"><type>VkStructureType</type> <name>sType</name></member>
-            <member optional="true">const <type>void</type>*      <name>pNext</name></member>
+            <member optional="true"><type>void</type>*      <name>pNext</name></member>
             <member><type>uint64_t</type>                         <name>refreshDuration</name><comment>Number of nanoseconds from the start of one refresh cycle to the next</comment></member>
             <member><type>VkBool32</type>                         <name>variableRefresh</name></member>
         </type>
@@ -3208,6 +3208,7 @@ typedef void* <name>MTLSharedEvent_id</name>;
             <member values="VK_STRUCTURE_TYPE_SWAPCHAIN_TIMING_INFO_EXT"><type>VkStructureType</type> <name>sType</name></member>
             <member optional="true">const <type>void</type>*      <name>pNext</name></member>
             <member><type>VkTimeDomainEXT</type>                  <name>timeDomain</name><comment>Time domain selected by the application to be used for the swapchain time values</comment></member>
+            <member><type>VkBool32</type>                         <name>presentAtNearestRefreshCycle</name><comment>VK_TRUE if the presentation engine should target the nearest refresh cycle when a target present time is specified</comment></member>
         </type>
         <type category="struct" name="VkPresentStageTimeEXT">
             <member><type>VkPresentStageFlagsEXT</type>           <name>stage</name></member>
@@ -3215,11 +3216,11 @@ typedef void* <name>MTLSharedEvent_id</name>;
         </type>
         <type category="struct" name="VkPastPresentationTimingEXT">
             <member values="VK_STRUCTURE_TYPE_PAST_PRESENTATION_TIMING_EXT"><type>VkStructureType</type> <name>sType</name></member>
-	    <member optional="true">const <type>void</type>*      <name>pNext</name></member>
+	    <member optional="true"><type>void</type>*            <name>pNext</name></member>
             <member><type>uint64_t</type>                         <name>presentId</name><comment>Application-provided identifier, previously given to vkQueuePresentKHR</comment></member>
             <member><type>uint64_t</type>                         <name>targetPresentTime</name><comment>Earliest time an image should have been presented, previously given to vkQueuePresentKHR</comment></member>
-            <member><type>uint32_t</type>                         <name>presentStageCount</name><comment>TBD</comment></member>
-            <member><type>VkPresentStageTimeEXT</type>*           <name>pPresentStages</name><comment>TBD</comment></member>
+            <member><type>uint32_t</type>                         <name>presentStageCount</name><comment>Number of present stages results available in pPresentStages</comment></member>
+            <member><type>VkPresentStageTimeEXT</type>*           <name>pPresentStages</name><comment>Reported timings for each present stage</comment></member>
             <member><type>VkBool32</type>                         <name>timingPropertiesChanged</name><comment>VK_TRUE if swapchain's timing properties changed since last queried</comment></member>
             <member><type>VkBool32</type>                         <name>timeDomainChanged</name><comment>VK_TRUE if the swapchain no longer supports the enabled time domain</comment></member>
             <member><type>VkBool32</type>                         <name>reportComplete</name><comment>VK_TRUE if all the present stages have been reported.</comment></member>
